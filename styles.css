@@ -1,7 +1,6 @@
-:root {
-  color: CanvasText;
+* {
+  box-sizing: border-box;
 }
-
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #111;
@@ -54,4 +53,34 @@ header {
 
 a {
   color: #88f;
+}
+
+.codeBlock_bY9V {
+  --ifm-pre-background: var(--prism-background-color);
+  margin: 0;
+  padding: 0;
+}
+
+pre {
+  background-color: var(--ifm-pre-background);
+  border-radius: var(--ifm-pre-border-radius);
+  color: var(--ifm-pre-color);
+  font: var(--ifm-code-font-size) / var(--ifm-pre-line-height)
+    var(--ifm-font-family-monospace);
+  padding: var(--ifm-pre-padding);
+}
+.codeBlockLines_e6Vv {
+  text-align: left;
+  float: inline-end;
+  display: flex;
+  min-width: 100%;
+  padding: var(--ifm-pre-padding);
+}
+
+pre code {
+  background-color: initial;
+  border: none;
+  font-size: 100%;
+  line-height: inherit;
+  padding: 0;
 }
