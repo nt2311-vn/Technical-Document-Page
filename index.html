@@ -6,6 +6,9 @@
     <title>Techincal Document Page</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
+  <nav id="navbar">
+    <header>⚡ Zig lang</header>
+  </nav>
   <body>
     <main id="main-doc">
       <section id="Introduction" class="main-section">
@@ -112,32 +115,105 @@
           <li>
             <p>Hello World</p>
             <p>Create a file called main.zig, with the following contents:</p>
-            <pre
-              class="prism-code language-zig codeBlock_bY9V thin-scrollbar"
-              tabindex="0"
-              style="
-                color: rgb(248, 248, 242);
-                background-color: rgb(40, 42, 54);
-              "
-            >
-            <pre
-              class="prism-code language-zig codeBlock_bY9V thin-scrollbar"
-              tabindex="0"
-              style="
-                color: rgb(248, 248, 242);
-                background-color: rgb(40, 42, 54);"
-            >
             <code class="codeBlockLines_e6Vv"">
               const std = @import("std"); pub fn main() void {
               std.debug.print("Hello, {s}!\n", .{"World"}); }
             </code>
-            </pre>
-            </pre>
+          </li>
+          <li>
+            <p>Parse JSON</p>
+            <p>Let's parse a JSON string into a struct type, using the streaming parser.</p>
+            <code class="codeBlockLines_e6Vv"">
+              const Place = struct { lat: f32, long: f32 };
+              test "json parse" {
+              const parsed = try std.json.parseFromSlice(
+                  Place,
+                  test_allocator,
+                  \\{ "lat": 40.684540, "long": -74.401422 }
+              ,
+                  .{},
+              );
+              defer parsed.deinit();
+
+              const place = parsed.value;
+
+              try expect(place.lat == 40.684540);
+              try expect(place.long == -74.401422);
+            }
+            </code>
+          </li>
+          <li>
+            <p>If Expressions</p>
+            <p>Zig's if statements accept bool values (i.e. true or false). Unlike languages like C or Javascript, there are no values that implicitly coerce to bool values.</p>
+            <code>
+              const expect = @import("std").testing.expect;
+
+              test "if statement" {
+                  const a = true;
+                  var x: u16 = 0;
+                  if (a) {
+                      x += 1;
+                  } else {
+                      x += 2;
+                  }
+                  try expect(x == 1);
+              }
+            </code>
+          </li>
+          <li>
+            <p>For loops</p>
+            <p>For loops are used to iterate over arrays (and other types, to be discussed later). For loops follow this syntax. Like while, for loops can use break and continue. Here, we've had to assign values to _, as Zig does not allow us to have unused values.</p>
+            <code>
+              const expect = @import("std").testing.expect;
+
+              test "for" {
+                  //character literals are equivalent to integer literals
+                  const string = [_]u8{ 'a', 'b', 'c' };
+
+                  for (string, 0..) |character, index| {
+                      _ = character;
+                      _ = index;
+                  }
+
+                  for (string) |character| {
+                      _ = character;
+                  }
+
+                  for (string, 0..) |_, index| {
+                      _ = index;
+                  }
+
+                  for (string) |_| {}
+              }
+            </code>
+          </li>
+          <li>
+            <p>Defer</p>
+            <p>Defer is used to execute a statement while exiting the current block.</p>
+            <code>
+              const expect = @import("std").testing.expect;
+
+              test "defer" {
+                  var x: i16 = 5;
+                  {
+                      defer x += 2;
+                      try expect(x == 5);
+                  }
+                  try expect(x == 7);
+              }
+            </code>
           </li>
         </ol>
       </section>
       <section id="Community" class="main-section">
         <header>Community</header>
+        <img src="https://ziglang.org/ziggy.svg" alt="zig_mascot" width="480" height="240">
+        <p>The Zig community is decentralized</p>
+        <p>Anyone is free to start and maintain their own space for the community to gather.
+There is no concept of “official” or “unofficial”, however, each gathering place has its own moderators and rules.</p>
+        <p>Main development</p>
+        <p>The Zig repository can be found at <a href="https://github.com/ziglang/zig">https://github.com/ziglang/zig</a>, where we also host the issue tracker and discuss proposals.
+Contributors are expected to follow Zig’s Code of Conduct.</p>
       </section>
     </main>
   </body>
