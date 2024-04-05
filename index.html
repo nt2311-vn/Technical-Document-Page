@@ -96,10 +96,45 @@
             A structured introduction to Zig by
             <a href="https://github.com/sobeston">Sobeston</a>.
           </li>
+          <li>
+            <a href="https://ziglings.org">Ziglings</a><br />
+            Learn Zig by fixing tiny broken programs.
+          </li>
+          <li>
+            <a href="https://exercism.org/tracks/zig">Zig on Exercism</a><br />
+            Solve coding exercises and get mentored to develop fluency in Zig.
+          </li>
         </ul>
       </section>
       <section id="Examples" class="main-section">
         <header>Examples</header>
+        <ol>
+          <li>
+            <p>Hello World</p>
+            <p>Create a file called main.zig, with the following contents:</p>
+            <pre
+              class="prism-code language-zig codeBlock_bY9V thin-scrollbar"
+              tabindex="0"
+              style="
+                color: rgb(248, 248, 242);
+                background-color: rgb(40, 42, 54);
+              "
+            >
+            <pre
+              class="prism-code language-zig codeBlock_bY9V thin-scrollbar"
+              tabindex="0"
+              style="
+                color: rgb(248, 248, 242);
+                background-color: rgb(40, 42, 54);"
+            >
+            <code class="codeBlockLines_e6Vv"">
+              const std = @import("std"); pub fn main() void {
+              std.debug.print("Hello, {s}!\n", .{"World"}); }
+            </code>
+            </pre>
+            </pre>
+          </li>
+        </ol>
       </section>
       <section id="Community" class="main-section">
         <header>Community</header>
